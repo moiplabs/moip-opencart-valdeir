@@ -28,7 +28,7 @@ $status_moip  = $db->query('SELECT * FROM ' . DB_PREFIX . 'setting WHERE `group`
 //Captura os dados da tabela setting
 $config       = $db->query('SELECT `key`,`value` FROM `' . DB_PREFIX . 'setting` WHERE  `group` = "config" OR `group` = "moip"');
 
-//Captura o valor da chave notificação, autorizado, iniciado, boleto impresso, concluido, cancelado, em analise, estornado, em revisão e reembolsado.
+//Captura o valor da chave notificaï¿½ï¿½o, autorizado, iniciado, boleto impresso, concluido, cancelado, em analise, estornado, em revisï¿½o e reembolsado.
 $notify        = $status_moip->rows[5]['value'];
 $autorizado    = $status_moip->rows[8]['value'];
 $iniciado      = $status_moip->rows[9]['value'];
@@ -67,11 +67,11 @@ switch ($_POST['status_pagamento']) {
 		break;
 }
 
-//Caso já exista o id recebido pelo moip na tabela moip_nasp, ele atualiza as tabelas moip_nasp e order
+//Caso jï¿½ exista o id recebido pelo moip na tabela moip_nasp, ele atualiza as tabelas moip_nasp e order
 if (!empty($id_transacao->row)) {
 	$db->query('UPDATE ' . DB_PREFIX . 'moip_nasp SET status_pagamento="' . $status . '" WHERE id_transacao = "' . $_POST['id_transacao'] . '"');
 }else{
-	//Caso não exista o id recebido pelo moip na tabela moip_nasp, inseri os dados recebidos do moip na tabela moip_nasp
+	//Caso nï¿½o exista o id recebido pelo moip na tabela moip_nasp, inseri os dados recebidos do moip na tabela moip_nasp
 	$db->query("INSERT INTO `" . DB_PREFIX . "moip_nasp` (
 				`id_transacao`, 
 				`valor`, 
@@ -79,8 +79,8 @@ if (!empty($id_transacao->row)) {
 				`cod_moip`, 
 				`forma_pagamento`, 
 				`tipo_pagamento`, 
-				`email_consumidor`, 
 				`parcelas`, 
+				`email_consumidor`, 				
 				`cartao_bin`, 
 				`cartao_final`, 
 				`cartao_bandeira`, 
@@ -105,13 +105,13 @@ $db->query('UPDATE `' . DB_PREFIX . 'order` SET order_status_id = "' . $status .
 	
 $mensagem = '';
 
-//Verifica se a opção notificação do cliente está ativa, caso esteja:
+//Verifica se a opï¿½ï¿½o notificaï¿½ï¿½o do cliente estï¿½ ativa, caso esteja:
 if ($notify) {
 
 	//Captura o nome do status recebido pelo moip,
 	$status_order = $db->query('SELECT * FROM ' . DB_PREFIX . 'order_status WHERE order_status_id = "' . $status . '"');
 	
-	//Captura as configurações de email para o envio
+	//Captura as configuraï¿½ï¿½es de email para o envio
 	for ($i = 0;$i < count($config->rows);$i++) {
 		
 		if ($config->rows[$i]['key'] == 'config_mail_protocol') {
@@ -177,7 +177,7 @@ if ($notify) {
 	$mail->send();
 }
 
-//Adiciona a alteração na tabela order_history (histórico de pedido)
+//Adiciona a alteraï¿½ï¿½o na tabela order_history (histï¿½rico de pedido)
 $db->query("INSERT INTO `". DB_PREFIX ."order_history` (`order_id`, `order_status_id`, `notify`, `comment`, `date_added`) VALUES ('".$_POST['id_transacao']."', '".$status."', '".$notify."', '".$db->escape(strip_tags($mensagem))."', NOW())");
 	
 
