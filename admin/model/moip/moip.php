@@ -290,12 +290,12 @@ class ModelMoipMoip extends Model {
 	/* Captura todas informações enviadas pelo MoIP */
 	public function getMoipNasp($order_id) {
 		
-		$dados = $this->db->query('SELECT * FROM moip_nasp WHERE id_transacao = "'.$order_id.'"');
+		$result = $this->db->query('SELECT * FROM ' . DB_PREFIX. 'moip_nasp WHERE id_transacao = "'.$order_id.'"');
 		
-		if ($dados->row < 1):
+		if ($result->row < 1):
 			return false;
 		else:
-			return $dados->row;
+			return $result->row;
 		endif;
 		
 	}
@@ -402,12 +402,14 @@ class ModelMoipMoip extends Model {
 		}
 		
 		if ($pagamento_id == 76) {
-			return 'Valdeir';
+			return 'Oi Paggo';
 		}
 		
 		if ($pagamento_id == 88) {
-			return 'Valdeir';
+			return 'Banrisul';
 		}
+		
+		return 'Desconhecido';
 		
 		
 	}

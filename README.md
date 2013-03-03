@@ -1,6 +1,7 @@
 * [O que é o projeto](#o-que-%C3%A9-o-projeto)
 * [Requisitos](#requisitos)
 * [Instalação](#instala%C3%A7%C3%A3o)
+* [Changelog](#changelog)
 * [Atualização](#atualiza%C3%A7%C3%A3o-da-vers%C3%A3o-free-para-vers%C3%A3o-pro)
 * [Token e Key](#token-e-key-de-produ%C3%A7%C3%A3o)
 * [Configuração Básica](#configura%C3%A7%C3%A3o-b%C3%A1sica)
@@ -24,13 +25,17 @@ Você pode ter um aumento de até 30% na conversão de suas vendas, uma vez que,
 Os dados de pagamento dos seus clientes são direcionados diretamente do navegador para o Moip. Sem passar por seus servidores, assim não precisa se preocupar com a segurança destas informações.
 
 ### Requisitos
-* **OpenCart:** 1.5.1, 1.5.1.3, 1.5.2.1, 1.5.3, 1.5.3.1, 1.5.4, 1.5.4.1
+* **OpenCart:** 1.5.1, 1.5.1.3, 1.5.2.1, 1.5.3, 1.5.3.1, 1.5.4, 1.5.4.1, 1.5.5.1
 * **VQmod:** Sim
 * **jQuery:** 1.7 ou superior
 * **ColorBox:** Sim
 
+### Changelog
+- Remoção da etapa 5 do checkout (Métodos de Pagamento)
+- Correção da página Admin > MoIP > MoIP
+
 ### Instalação
-1. Extraia o arquivo moip.zip no seu comp1tador.
+1. Extraia o arquivo moip.zip no seu computador.
 2. Copie as pastas "admin", "catalog", "image", "valdeir", "vqmod", "system" e o arquivo "retorno_moip.php" para a raiz de sua loja.
 3. Acesse [http://www.SEUDOMINIO.com.br/valdeir/moip/](javascript:void(0).
 4. Clique em Instalar
