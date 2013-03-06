@@ -71,16 +71,40 @@ switch ($_POST['status_pagamento']) {
 if (!empty($id_transacao->row)) {
 	$db->query('UPDATE ' . DB_PREFIX . 'moip_nasp SET status_pagamento="' . $status . '" WHERE id_transacao = "' . $_POST['id_transacao'] . '"');
 }else{
+	if (empty($_POST['cartao_bin'])):
+		$cartaoBin = 'Indefinido';
+	else:
+		$cartaoBin = $_POST['cartao_bin'];
+	endif;
+	
+	if (empty($_POST['cartao_final'])):
+		$cartaoFinal = 'Indefinido';
+	else:
+		$cartaoFinal = $_POST['cartao_final'];
+	endif;
+	
+	if (empty($_POST['cartao_bandeira'])):
+		$cartaoBandeira = 'Indefinido';
+	else:
+		$cartaoBandeira = $_POST['cartao_bandeira'];
+	endif;
+	
+	if (empty($_POST['cofre'])):
+		$cartaoCofre = 'Indefinido';
+	else:
+		$cartaoCofre = $_POST['cofre'];
+	endif;
+	
 	//Caso não exista o id recebido pelo moip na tabela moip_nasp, inseri os dados recebidos do moip na tabela moip_nasp
 	$db->query("INSERT INTO `" . DB_PREFIX . "moip_nasp` (
 				`id_transacao`, 
 				`valor`, 
 				`status_pagamento`, 
 				`cod_moip`, 
-				`forma_pagamento`, 
 				`tipo_pagamento`, 
-				`email_consumidor`, 
+				`forma_pagamento`, 
 				`parcelas`, 
+				`email_consumidor`, 
 				`cartao_bin`, 
 				`cartao_final`, 
 				`cartao_bandeira`, 
@@ -90,14 +114,14 @@ if (!empty($id_transacao->row)) {
 				'" . $_POST['valor'] . "', 
 				'" . $_POST['status_pagamento'] . "', 
 				'" . $_POST['cod_moip'] . "', 
-				'" . $_POST['forma_pagamento'] . "', 
 				'" . $_POST['tipo_pagamento'] . "', 
+				'" . $_POST['forma_pagamento'] . "', 
 				'" . $_POST['parcelas'] . "', 
 				'" . $_POST['email_consumidor'] . "', 
-				'" . $_POST['cartao_bin'] . "', 
-				'" . $_POST['cartao_final'] . "', 
-				'" . $_POST['cartao_bandeira'] . "', 
-				'" . $_POST['cofre'] . "');");
+				'" . $cartaoBin . "', 
+				'" . $cartaoFinal . "', 
+				'" . $cartaoBandeira . "', 
+				'" . $cartaoCofre . "');");
 }
 
 
